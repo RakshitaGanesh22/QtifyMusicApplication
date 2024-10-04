@@ -1,24 +1,25 @@
-import logo from './logo.svg';
 import './App.css';
-
+import { ContextProvider } from './components/dataContext';
+import APIdata from './components/APIdta';
+import theme from './components/Theme';
+import { ThemeProvider } from '@mui/material';
+import NavBar from "./components/navbar";
+import { useEffect } from 'react';
+import HeroSection from './components/Herosection';
+import CommonCard from "./components/commonCard";
+import TopAlbum from "./components/TopAlbum"
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <ContextProvider>
+      <APIdata />
+        <div className="App">
+          {/* <NavBar/>
+          <HeroSection/> */}
+          <TopAlbum/>
+        </div>
+      </ContextProvider>
+    </ThemeProvider>
   );
 }
 
