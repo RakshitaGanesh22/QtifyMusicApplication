@@ -12,6 +12,7 @@ import {
   export default function NavBar() {
     const { newAlbum, TopAlbum, modalOpen, setModalOpen, currentSong, setCurrentSong } = useContext(dataProvider);
     const Songs = [...TopAlbum, ...newAlbum];
+    const [value, setValue] = useState(null);
     const theme = useTheme();
     const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
     const [openMenu, setOpen] = useState(null);
@@ -21,13 +22,14 @@ import {
     const handleMenuOpen = (event) => setOpen(event.currentTarget);
   
     function handleSearch() {
+        setValue(null);
         setCurrentSong([]);
       if (currentSearch) {
         
         const currentData = Songs.filter((item) => item.title === currentSearch.title);
         setCurrent(null);
         if (currentData.length>0){
-            setCurrentSong(currentData);
+            setCurrentSong(currentData[0]);
             console.log(currentSong);
         }
         
@@ -50,9 +52,10 @@ import {
           <Box sx={{ display: "flex" }}>
             <Autocomplete
               options={Songs}
+              value={value}
               sx={{ width: "40vw", backgroundColor: "#fff", borderRadius: "0.5rem", input: { color: "#000" } }}
               getOptionLabel={(option) => option.title}
-              onChange={(event, newValue) => setCurrent(newValue)} 
+              onChange={(event, newValue) => {setCurrent(newValue);setValue(newValue)}}
               renderOption={(props, option) => (
                 <Box component="li" {...props} key={option.id} sx={(theme) => ({ backgroundColor: theme.palette.primary.main })}>
                   {CardMaker(option)}
@@ -122,8 +125,9 @@ import {
                 <MenuItem sx={(theme) => ({ width: "100vw", display: "flex", gap: "0px", alignItems: "center", })}>
                   <Autocomplete
                     options={Songs}
+                    value={value}
                     getOptionLabel={(option) => option.title}
-                    onChange={(event, newValue) => setCurrent(newValue)}  // Handle value change
+                    onChange={(event, newValue) => {setCurrent(newValue);setValue(newValue)}}  // Handle value change
                     renderOption={(props, option) => (
                       <Box component="li" {...props} key={option.id} sx={(theme) => ({ backgroundColor: theme.palette.primary.main })}>
                         {CardMaker(option)}

@@ -35,6 +35,7 @@ export default function Modal() {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
+    zIndex:"1000"
   };
 
   const formStyle = {

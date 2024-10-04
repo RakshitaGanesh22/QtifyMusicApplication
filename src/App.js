@@ -7,16 +7,22 @@ import NavBar from "./components/navbar";
 import { useEffect } from 'react';
 import HeroSection from './components/Herosection';
 import CommonCard from "./components/commonCard";
-import TopAlbum from "./components/TopAlbum"
+import TopAlbum from "./components/TopAlbum";
+import NewAlbum from "./components/newAlbum";
+import FAQ from "./components/FAQ";
+import Songs from "./components/songs"
 function App() {
   return (
     <ThemeProvider theme={theme}>
       <ContextProvider>
       <APIdata />
         <div className="App">
-          {/* <NavBar/>
-          <HeroSection/> */}
+          <NavBar/>
+          <HeroSection/>
           <TopAlbum/>
+          <NewAlbum/>
+          <Songs/>
+          <FAQ/>
         </div>
       </ContextProvider>
     </ThemeProvider>
