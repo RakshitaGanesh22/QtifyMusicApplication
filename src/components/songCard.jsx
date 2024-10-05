@@ -2,12 +2,13 @@ import {Card,CardMedia,CardContent,Chip, Typography,Box,Tooltip} from "@mui/mate
 import { dataProvider } from "../components/dataContext";
 import { useState, useContext, useEffect } from "react";
 export default function SongCard(props){
-    const {currentSong, setCurrentSong}=useContext(dataProvider);
+    const {currentSong, setCurrentSong,playing,setPlaying}=useContext(dataProvider);
     const {image,likes,title,genre}=props.item;
     // console.log(image,likes,title,genre.label);
     function handleClick(){
         setCurrentSong(props.item);
         console.log(currentSong);
+        setPlaying(props.item);
     }
     return(
         <Tooltip title={genre.label} >

@@ -103,7 +103,7 @@ export default function FAQ() {
             justifyContent: "center",
             alignItems: "center", // Fixed 'alignItem'
             gap: "1rem",
-            marginBottom:"2rem"
+            marginBottom:"15rem"
           }}
         >
           {FAQdata.map((item, index) => (

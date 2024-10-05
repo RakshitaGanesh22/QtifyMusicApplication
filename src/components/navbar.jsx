@@ -8,8 +8,9 @@ import {
   import logo from "./assets/logo.png";
   import { dataProvider } from "../components/dataContext";
   import Modal from "./modal";
-  
+  import { useNavigate } from 'react-router-dom';
   export default function NavBar() {
+    const Navigate=useNavigate();
     const { newAlbum, TopAlbum, modalOpen, setModalOpen, currentSong, setCurrentSong } = useContext(dataProvider);
     const Songs = [...TopAlbum, ...newAlbum];
     const [value, setValue] = useState(null);
@@ -37,7 +38,9 @@ import {
       }
       else{
         window.alert("No Such album exsists")
+        return;
     }
+    Navigate('/music');
     }
   
     useEffect(() => {
@@ -48,7 +51,7 @@ import {
   
     function Manual() {
       return (
-        <Box sx={{ display: "flex", justifyContent: "center", gap: "15vw" }}>
+        <Box sx={{ display: "flex", justifyContent: "center", gap: "15vw"}}>
           <Box sx={{ display: "flex" }}>
             <Autocomplete
               options={Songs}
@@ -102,7 +105,7 @@ import {
     return (
       <AppBar position="static">
         <Toolbar sx={{ display: "flex", justifyContent: "space-between", height: "10vh" }}>
-          <IconButton>
+          <IconButton onClick={(()=>{Navigate('/')})}>
             <Avatar src={logo} alt="logo" sx={{ height: "40px", width: "75px", borderRadius: "0px", objectFit: "contain" }} />
           </IconButton>
           {isSmallScreen ? (

@@ -1,13 +1,16 @@
 import {Card,CardMedia,CardContent,Chip, Typography,Box,Tooltip} from "@mui/material";
 import { dataProvider } from "../components/dataContext";
 import { useState, useContext, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 export default function CommonCard(props){
+    const Navigate=useNavigate();
     const {currentSong, setCurrentSong}=useContext(dataProvider);
     const {image,follows,title}=props.item;
     console.log(image,follows,title);
     function handleClick(){
         setCurrentSong(props.item);
         console.log(currentSong);
+        Navigate('/music')
     }
     return(
         <Tooltip title={title} >
